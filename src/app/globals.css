@@ -1,0 +1,138 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg:          #0f0f14;
+    --surface:     #18181f;
+    --border:      #2a2a35;
+    --text:        #e8e8f0;
+    --text-muted:  #8888a0;
+    --brand:       #1a4fff;
+    --brand-light: #3d6eff;
+    --success:     #22c55e;
+    --warning:     #f59e0b;
+    --error:       #ef4444;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface text-white;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar        { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track  { background: #0f0f14; }
+  ::-webkit-scrollbar-thumb  { background: #2a2a35; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3a3a50; }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface-card rounded-2xl border border-surface-border;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl
+           bg-brand-500 hover:bg-brand-400 text-white font-semibold text-sm
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+           shadow-lg shadow-brand-900/40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl
+           bg-surface-card border border-surface-border hover:bg-surface-hover
+           text-white font-medium text-sm transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl
+           text-gray-400 hover:text-white hover:bg-surface-hover
+           font-medium text-sm transition-all duration-200;
+  }
+
+  .input {
+    @apply w-full bg-surface border border-surface-border rounded-xl
+           px-4 py-3 text-white text-sm placeholder-gray-600
+           focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30
+           transition-all duration-200;
+  }
+
+  .textarea {
+    @apply input resize-none;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-pending    { @apply badge bg-yellow-500/15 text-yellow-400; }
+  .badge-processing { @apply badge bg-blue-500/15 text-blue-400; }
+  .badge-completed  { @apply badge bg-green-500/15 text-green-400; }
+  .badge-failed     { @apply badge bg-red-500/15 text-red-400; }
+
+  .drop-zone {
+    @apply relative flex flex-col items-center justify-center gap-3
+           border-2 border-dashed border-surface-border rounded-2xl p-8
+           cursor-pointer transition-all duration-200
+           hover:border-brand-500/60 hover:bg-brand-500/5;
+  }
+
+  .drop-zone.active {
+    @apply border-brand-500 bg-brand-500/10;
+  }
+
+  .progress-bar {
+    @apply w-full h-2 bg-surface-border rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-brand-500 to-purple-500 rounded-full
+           transition-all duration-500;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-white mb-1;
+  }
+
+  .section-desc {
+    @apply text-sm text-gray-500;
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
+  .animate-slide-up { animation: slideUp 0.4s ease-out; }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-purple-400;
+  }
+}
+
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { from { background-position: -200% center; } to { background-position: 200% center; } }
+
+.shimmer {
+  background: linear-gradient(90deg, #18181f 25%, #23232d 50%, #18181f 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
