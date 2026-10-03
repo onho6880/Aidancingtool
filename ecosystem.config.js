@@ -4,7 +4,7 @@ module.exports = {
       name:         'vidai-web',
       script:       'node_modules/.bin/next',
       args:         'start -p 3000',
-      cwd:          '/var/www/vidai-studio',
+      cwd:          '/var/www/vidai',
       instances:    1,
       autorestart:  true,
       watch:        false,
@@ -16,7 +16,7 @@ module.exports = {
     {
       name:         'vidai-worker',
       script:       'worker/index.js',
-      cwd:          '/var/www/vidai-studio',
+      cwd:          '/var/www/vidai',
       instances:    1,
       autorestart:  true,
       watch:        false,
